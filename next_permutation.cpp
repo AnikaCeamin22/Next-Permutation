@@ -1,10 +1,10 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-vector<int>nextPermutation(vector<int>&v)
+vector<int>nextPermutation(vector<int>&v)//O(3N)
 {
     int n=v.size(),ind=-1;
-    for(int i=n-2; i>=0; i--)
+    for(int i=n-2; i>=0; i--) // longest prefix match
     {
         if(v[i]<v[i+1])
         {
@@ -12,12 +12,12 @@ vector<int>nextPermutation(vector<int>&v)
             break;
         }
     }
-    if(ind==-1)
+    if(ind==-1) // if the greatest one than find smallest one
     {
         reverse(v.begin(),v.end());
         return v;
     }
-    for(int i=n-1; i>ind; i--)
+    for(int i=n-1; i>ind; i--) // after break pint find the smallest one which greater than a[ind]
     {
         if(v[i]>v[ind])
         {
@@ -25,7 +25,7 @@ vector<int>nextPermutation(vector<int>&v)
             break;
         }
     }
-    reverse(v.begin()+ind+1,v.end());
+    reverse(v.begin()+ind+1,v.end()); // sort other elements
     return v;
 }
 
